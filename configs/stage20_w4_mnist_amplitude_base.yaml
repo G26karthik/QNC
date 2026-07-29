@@ -1,0 +1,50 @@
+# Stage 20 Arm W4 -- MNIST {0,1,2}, amplitude encoding, n=4 qubits, PCA-16
+# (not PCA-4 -- uses all 2^n_qubits=16 amplitude dimensions rather than 4
+# angle-encoded features). L=16, R0, matching the anchor depth used
+# throughout Stage 19/20 for this dataset/qubit count. See PREDICTIONS.md
+# "Stage 20 preregistration", Arm W4, for the diagnostic reasoning
+# (capacity is not the bottleneck -- testing whether the angle-encoding
+# state manifold itself is).
+# model.reupload is a placeholder overridden by the probe sweep.
+
+experiment: stage20_w4_mnist_amplitude
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]
+  samples_per_class: 50
+  test_fraction: 0.2
+  pca_components: 16
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 16
+  reupload: true                # placeholder; overridden by the probe sweep
+  entangling: true
+  encoding: amplitude
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

@@ -1,0 +1,25 @@
+# Stage 18 arm B2 depth probe -- PREDICTIONS.md "Stage 18 preregistration",
+# arm B2. reupload=true ONLY (interpolation-feasibility question), L in
+# {8, 16, 32, 64}, 3 seeds per depth = 12 runs, same methodology as
+# configs/sweeps/stage15_n6_depth_probe.yaml. Smallest depth reaching 3/3
+# TPT feeds the 5-seed campaign (both reupload arms,
+# configs/sweeps/stage18_hwe_campaign.yaml, depth filled in once known).
+
+name: stage18_hwe_depth_probe
+base_config: configs/stage18_hwe_base.yaml
+seeds: [0, 1, 2]
+xlabel: layers (L)
+
+variants:
+  - label: L8
+    overrides: {model.layers: 8, model.reupload: true}
+    value: 8
+  - label: L16
+    overrides: {model.layers: 16, model.reupload: true}
+    value: 16
+  - label: L32
+    overrides: {model.layers: 32, model.reupload: true}
+    value: 32
+  - label: L64
+    overrides: {model.layers: 64, model.reupload: true}
+    value: 64

@@ -1,0 +1,46 @@
+# Stage 2 knob attempt: optimizer lr (PLAYBOOK Stage 2 knob #3).
+# Isolated against stage2_vqc_base (digits 0,1,2, all other knobs identical).
+# Prior results this session: digit triplet 0,1,7 -> 93.06% train acc (still
+# no TPT), marginal improvement over base's 88-92% cap. Trying lr=0.1 (base
+# uses 0.05) to test if optimization speed/step-size is the remaining
+# bottleneck.
+
+experiment: stage2_vqc_lr01
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6            # must equal model.n_qubits
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.1
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 400
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

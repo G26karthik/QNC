@@ -1,0 +1,14 @@
+# Stage 14B HR5 recovery -- stage14b_blob_std.yaml's background sweep was
+# killed mid-run after blob_std_0.4 seeds 0-1 (seed 2 died with an empty run
+# dir, left in place per CLAUDE.md invariant 3, not used). This remainder
+# covers blob_std_0.4 seeds 2-4 only.
+
+name: stage14b_blob_std_04_remainder
+base_config: configs/stage14_mechanism_base.yaml
+seeds: [2, 3, 4]
+xlabel: blob_std
+
+variants:
+  - label: blob_std_0.4
+    overrides: {data.blob_std: 0.4}
+    value: 0.4

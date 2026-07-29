@@ -1,0 +1,24 @@
+# Stage 14 arm 4 -- transition localization, L in {3, 5, 6} x 10 seeds each
+# (30 runs) -- SPEC3_ADDENDUM.md section 20 arm 4 (unchanged by the Stage 14
+# mechanism-tests reframing; prediction preregistered in PREDICTIONS.md's
+# "Arm 4" subsection). Reuses configs/stage9_transition.yaml's base
+# model/data/optimizer settings (R0-implicit: no readout_family override,
+# same as Stage 9's original fixed-Z_c-readout model). Only tpt_reached /
+# e0_epoch (already live-logged every run) are needed for this arm's
+# TPT-fraction table -- no checkpoint reload, no new metrics.
+
+name: stage14_transition_localization
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+xlabel: layers (L)
+
+variants:
+  - label: L3
+    overrides: {model.layers: 3}
+    value: 3
+  - label: L5
+    overrides: {model.layers: 5}
+    value: 5
+  - label: L6
+    overrides: {model.layers: 6}
+    value: 6

@@ -1,0 +1,22 @@
+# Stage 5 falsification check 1: does the collapse geometry survive noisy
+# optimization? shots=1000 makes the training-time expval/logit circuit
+# stochastic (VQC switches to a finite-shots device + parameter-shift
+# gradients, see models.py). The state circuit used for all SPEC.md §4
+# metrics stays exact (shots=None) regardless -- shots affect TRAINING only,
+# never the logged QNC metrics themselves.
+# Base = the Stage 4 anchor (stage2_vqc_c2_diagnostic.yaml), the only config
+# that reliably reaches TPT (see ablation_entangling sweep, entangling_true:
+# 3/3 TPT).
+
+name: stage5_shots
+base_config: configs/stage2_vqc_c2_diagnostic.yaml
+seeds: [0, 1, 2]
+xlabel: shots
+
+variants:
+  - label: shots_null
+    overrides: {}
+    value: "exact"
+  - label: shots_1000
+    overrides: {train.shots: 1000}
+    value: "1000"

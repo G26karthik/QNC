@@ -1,0 +1,11 @@
+# Stage 19 capacity check, Fashion-MNIST side. See stage19_l32_probe.yaml
+# for rationale.
+
+name: stage19_fmnist_l32_probe
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [0, 1]
+xlabel: seed
+
+variants:
+  - label: fmnist_l32
+    overrides: {model.layers: 32, model.reupload: true}

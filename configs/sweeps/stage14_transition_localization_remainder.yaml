@@ -1,0 +1,17 @@
+# Recovery config: the original stage14_transition_localization sweep's
+# background process was killed after L3 (10 seeds) completed and L5 seeds
+# 0-8 completed; L5 seed 9 died mid-training (epoch 850/1200, dir
+# results/stage14_transition_localization_L5_s9_20260715-004730, left in
+# place per CLAUDE.md invariant 3, not used) and L6 (all 10 seeds) never
+# started. This reruns only the missing L5 seed 9 and all L6 seeds; the
+# manifest is assembled by hand from both the original and remainder runs.
+
+name: stage14_transition_localization_remainder
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+xlabel: layers (L), remainder
+
+variants:
+  - label: L6
+    overrides: {model.layers: 6}
+    value: 6

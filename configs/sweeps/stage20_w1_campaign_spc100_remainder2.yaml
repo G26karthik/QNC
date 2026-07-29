@@ -1,0 +1,12 @@
+# Stage 20 Arm W1 spc=100, last remaining seed -- the first remainder sweep
+# (seeds 2-4) was killed by a session restart after seeds 2-3 completed;
+# this finishes seed 4 alone.
+
+name: stage20_w1_campaign_spc100_remainder2
+base_config: configs/stage19_mnist_base.yaml
+seeds: [4]
+xlabel: seed
+
+variants:
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false, data.samples_per_class: 100}

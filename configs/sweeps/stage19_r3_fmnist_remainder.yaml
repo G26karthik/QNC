@@ -1,0 +1,12 @@
+# Stage 19 remainder: r3_fmnist seed 2 only (0,1 completed; 2 died
+# mid-training, left uncleaned per CLAUDE.md invariant 3, before the
+# background process was killed externally).
+
+name: stage19_r3_fmnist_remainder
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [2]
+xlabel: seed
+
+variants:
+  - label: r3_l16
+    overrides: {model.layers: 16, model.reupload: true, model.readout_family: R3, model.measurement_layers: 2}

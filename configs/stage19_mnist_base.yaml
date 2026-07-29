@@ -1,0 +1,54 @@
+# Stage 19 Arm V1 -- MNIST digits {0,1,2}, C=3, PCA-4, n=4 qubits, L=8, R0.
+# model.reupload is a placeholder overridden by the campaign sweep
+# (both reupload=true and reupload=false are run, mirroring Stage 15's
+# n=6 replication structure).
+
+experiment: stage19_mnist
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]
+  samples_per_class: 200
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 16                    # PREREGISTRATION DEVIATION: L=8 R0 never reached
+                                 # TPT (600 epochs, train acc plateau ~0.90-0.93,
+                                 # both stage19_mnist_campaign seed 0 and
+                                 # stage19_r3_mnist seed 0) -- undetected in
+                                 # advance because the written trim rule
+                                 # (PREDICTIONS.md "Stage 19 preregistration")
+                                 # only covered Fashion-MNIST. Same failure mode
+                                 # as FMNIST's L=8 probe; L=16 applied for
+                                 # consistency, reported factually in
+                                 # STAGE19_FINDINGS.md, not silently folded in.
+  reupload: true                # placeholder; overridden by the campaign sweep
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

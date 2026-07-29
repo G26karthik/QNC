@@ -1,0 +1,204 @@
+{
+  "stage19_mnist_campaign": {
+    "reupload_true": {
+      "0": {
+        "run_id": "stage19_mnist_campaign_reupload_true_s0_20260724-211115",
+        "total_var_max_rel_change": 0.032985746471658105,
+        "nc1_z_ratio": 0.004089967229372613,
+        "fiber_fraction_final": 0.9925081391170031,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_mnist_campaign_remainder_reupload_true_s1_20260725-133928",
+        "total_var_max_rel_change": 0.025017241315232322,
+        "nc1_z_ratio": 0.007646844887869557,
+        "fiber_fraction_final": 0.9919077727781666,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_mnist_campaign_remainder_reupload_true_s2_20260725-143051",
+        "total_var_max_rel_change": 0.02532005772583976,
+        "nc1_z_ratio": 0.0041433971716601835,
+        "fiber_fraction_final": 0.9908258960097245,
+        "n_checkpoints": 161
+      },
+      "3": {
+        "run_id": "stage19_mnist_campaign_remainder_reupload_true_s3_20260725-150612",
+        "total_var_max_rel_change": 0.019635864749513718,
+        "nc1_z_ratio": 0.002715461676114134,
+        "fiber_fraction_final": 0.9922410257859786,
+        "n_checkpoints": 161
+      },
+      "4": {
+        "run_id": "stage19_mnist_campaign_remainder_reupload_true_s4_20260725-153613",
+        "total_var_max_rel_change": 0.02902969914050413,
+        "nc1_z_ratio": 0.004209391592945247,
+        "fiber_fraction_final": 0.9918729347272057,
+        "n_checkpoints": 161
+      }
+    },
+    "reupload_false": {
+      "0": {
+        "run_id": "stage19_mnist_campaign_false_reupload_false_s0_20260725-134240",
+        "total_var_max_rel_change": 4.479157940329311e-15,
+        "nc1_z_ratio": 0.07216171841969467,
+        "fiber_fraction_final": 0.9872133371740628,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_mnist_campaign_false_reupload_false_s1_20260725-143055",
+        "total_var_max_rel_change": 7.025274395121683e-15,
+        "nc1_z_ratio": 0.048537569591358604,
+        "fiber_fraction_final": 0.9876600898530417,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_mnist_campaign_false_reupload_false_s2_20260725-150115",
+        "total_var_max_rel_change": 5.6874626922745974e-15,
+        "nc1_z_ratio": 0.03334327500928641,
+        "fiber_fraction_final": 0.98874991975476,
+        "n_checkpoints": 161
+      },
+      "3": {
+        "run_id": "stage19_mnist_campaign_false_reupload_false_s3_20260725-152752",
+        "total_var_max_rel_change": 8.342730519148011e-15,
+        "nc1_z_ratio": 0.061623180841089246,
+        "fiber_fraction_final": 0.9887021782229578,
+        "n_checkpoints": 161
+      },
+      "4": {
+        "run_id": "stage19_mnist_campaign_false_reupload_false_s4_20260725-154815",
+        "total_var_max_rel_change": 8.011228495069129e-15,
+        "nc1_z_ratio": 0.02606958476941462,
+        "fiber_fraction_final": 0.9868028621541648,
+        "n_checkpoints": 161
+      }
+    }
+  },
+  "stage19_fmnist_campaign": {
+    "reupload_true": {
+      "0": {
+        "run_id": "stage19_fmnist_campaign_reupload_true_s0_20260724-204221",
+        "total_var_max_rel_change": 0.035939039011917896,
+        "nc1_z_ratio": 0.004623502228443317,
+        "fiber_fraction_final": 0.9911912595380238,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_fmnist_campaign_reupload_true_s1_20260724-211656",
+        "total_var_max_rel_change": 0.022906067401264902,
+        "nc1_z_ratio": 0.003745694068539129,
+        "fiber_fraction_final": 0.9911531740473416,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_fmnist_campaign_remainder_reupload_true_s2_20260725-134245",
+        "total_var_max_rel_change": 0.030143966467604415,
+        "nc1_z_ratio": 0.012781395552980013,
+        "fiber_fraction_final": 0.99158694328049,
+        "n_checkpoints": 161
+      },
+      "3": {
+        "run_id": "stage19_fmnist_campaign_remainder_reupload_true_s3_20260725-143556",
+        "total_var_max_rel_change": 0.0342474707621356,
+        "nc1_z_ratio": 0.0006284109460045542,
+        "fiber_fraction_final": 0.9907847672294331,
+        "n_checkpoints": 161
+      },
+      "4": {
+        "run_id": "stage19_fmnist_campaign_remainder_reupload_true_s4_20260725-151116",
+        "total_var_max_rel_change": 0.02516698259054465,
+        "nc1_z_ratio": 0.0014583352728199813,
+        "fiber_fraction_final": 0.9912198272560162,
+        "n_checkpoints": 161
+      }
+    },
+    "reupload_false": {
+      "0": {
+        "run_id": "stage19_fmnist_campaign_false_reupload_false_s0_20260725-134120",
+        "total_var_max_rel_change": 4.860236568289318e-15,
+        "nc1_z_ratio": 0.01042321297999402,
+        "fiber_fraction_final": 0.9872424415595783,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_fmnist_campaign_false_reupload_false_s1_20260725-142929",
+        "total_var_max_rel_change": 5.811033923863186e-15,
+        "nc1_z_ratio": 0.04070633155070334,
+        "fiber_fraction_final": 0.9841828631879541,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_fmnist_campaign_false_reupload_false_s2_20260725-145945",
+        "total_var_max_rel_change": 4.6908724826674195e-15,
+        "nc1_z_ratio": 0.0780875245229768,
+        "fiber_fraction_final": 0.9856153743164602,
+        "n_checkpoints": 161
+      },
+      "3": {
+        "run_id": "stage19_fmnist_campaign_false_reupload_false_s3_20260725-152642",
+        "total_var_max_rel_change": 9.494668009667542e-15,
+        "nc1_z_ratio": 0.18855087744241586,
+        "fiber_fraction_final": 0.9839022953039834,
+        "n_checkpoints": 161
+      },
+      "4": {
+        "run_id": "stage19_fmnist_campaign_false_reupload_false_s4_20260725-154713",
+        "total_var_max_rel_change": 6.207632002168523e-15,
+        "nc1_z_ratio": 0.04436979152230735,
+        "fiber_fraction_final": 0.9868509458337548,
+        "n_checkpoints": 161
+      }
+    }
+  },
+  "stage19_r3_mnist": {
+    "r3_l16": {
+      "0": {
+        "run_id": "stage19_r3_mnist_r3_l16_s0_20260724-211120",
+        "total_var_max_rel_change": 0.02628307091546164,
+        "nc1_z_ratio": 3.6724017680347067,
+        "fiber_fraction_final": 0.9890349199920776,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_r3_mnist_remainder_r3_l16_s1_20260725-134154",
+        "total_var_max_rel_change": 0.030155512353174065,
+        "nc1_z_ratio": 1.0823268436956133,
+        "fiber_fraction_final": 0.9872982039018557,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_r3_mnist_remainder_r3_l16_s2_20260725-143843",
+        "total_var_max_rel_change": 0.024587274656367113,
+        "nc1_z_ratio": 2.2967780261363897,
+        "fiber_fraction_final": 0.9887402580156184,
+        "n_checkpoints": 161
+      }
+    }
+  },
+  "stage19_r3_fmnist": {
+    "r3_l16": {
+      "0": {
+        "run_id": "stage19_r3_fmnist_r3_l16_s0_20260724-204307",
+        "total_var_max_rel_change": 0.046864000249472994,
+        "nc1_z_ratio": 1.0857399833659922,
+        "fiber_fraction_final": 0.9888873494775626,
+        "n_checkpoints": 161
+      },
+      "1": {
+        "run_id": "stage19_r3_fmnist_r3_l16_s1_20260724-211946",
+        "total_var_max_rel_change": 0.03186449066743543,
+        "nc1_z_ratio": 0.5672052087849971,
+        "fiber_fraction_final": 0.9881518888823455,
+        "n_checkpoints": 161
+      },
+      "2": {
+        "run_id": "stage19_r3_fmnist_remainder_r3_l16_s2_20260725-124236",
+        "total_var_max_rel_change": 0.04325922719069151,
+        "nc1_z_ratio": 2.795214895239082,
+        "fiber_fraction_final": 0.9877357351744105,
+        "n_checkpoints": 161
+      }
+    }
+  }
+}

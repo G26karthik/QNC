@@ -1,0 +1,18 @@
+# Stage 18 arm B1 lr-pick -- PREDICTIONS.md "Stage 18 preregistration",
+# arm B1: 1 seed each at lr in {0.05, 0.1}, SGD momentum=0.9, n=4 L=8 R0
+# reupload=false. Whichever reaches TPT (or lower final loss if neither/both
+# do) is carried into the 5-seed campaign (configs/sweeps/stage18_sgd_campaign.yaml,
+# lr filled in once this sweep's winner is known).
+
+name: stage18_sgd_lr_pick
+base_config: configs/stage18_sgd_base.yaml
+seeds: [0]
+xlabel: lr
+
+variants:
+  - label: lr05
+    overrides: {train.lr: 0.05}
+    value: 0.05
+  - label: lr10
+    overrides: {train.lr: 0.1}
+    value: 0.1

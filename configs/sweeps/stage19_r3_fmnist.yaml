@@ -1,0 +1,14 @@
+# Stage 19 Arm V2(d) -- VQC trainable measurement, R3, Fashion-MNIST {0,1,2}.
+# L=16 (matches this dataset's trim-rule depth, not L=8 -- see
+# stage19_r3_mnist.yaml for the R3-config rationale; MNIST stays L=8,
+# Fashion-MNIST uses L=16 because R0 never reached TPT at L=8 on this
+# dataset, per stage19_fmnist_probe). 3 seeds.
+
+name: stage19_r3_fmnist
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [0, 1, 2]
+xlabel: seed
+
+variants:
+  - label: r3_l16
+    overrides: {model.layers: 16, model.reupload: true, model.readout_family: R3, model.measurement_layers: 2}

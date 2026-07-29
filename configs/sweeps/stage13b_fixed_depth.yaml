@@ -1,0 +1,20 @@
+# Stage 13B fixed-depth rerun -- PLAYBOOK3.md Stage 13B Task B / PREDICTIONS.md
+# H2. Circuit depth FIXED at L=8 (96 circuit params, same as the R0 anchor)
+# for R1 and R2, abandoning the matched-total-M padding scheme that gave R1
+# L=5/R2 L=3 in the original Stage 13 sweep. Head params are extra and
+# reported separately (m_params_measurement): R1 head=30, R2 head=57.
+# R0/R3 are NOT rerun here (already L=8/L=6; see the original stage13_expressivity
+# manifest results/sweeps/stage13_expressivity_20260714-111146/manifest.json).
+
+name: stage13b_fixed_depth
+base_config: configs/stage13_expressivity.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: readout family (fixed depth)
+
+variants:
+  - label: R1
+    overrides: {model.layers: 8, model.readout_family: R1}
+    value: 1
+  - label: R2
+    overrides: {model.layers: 8, model.readout_family: R2}
+    value: 2

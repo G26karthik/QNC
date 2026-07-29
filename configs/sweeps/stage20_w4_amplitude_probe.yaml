@@ -1,0 +1,16 @@
+# Stage 20 Arm W4 -- amplitude-encoding probe. MNIST {0,1,2}, PCA-16
+# amplitude embedding, n=4, L=16, R0, samples_per_class=50, both reupload
+# arms, 2 seeds each = 4 runs. No directional TPT prediction (scoping
+# probe); reupload=false total_var invariance IS predicted to hold.
+# See PREDICTIONS.md "Stage 20 preregistration", Arm W4.
+
+name: stage20_w4_amplitude_probe
+base_config: configs/stage20_w4_mnist_amplitude_base.yaml
+seeds: [0, 1]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false}

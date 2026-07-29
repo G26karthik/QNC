@@ -1,0 +1,57 @@
+# Stage 13 measurement-expressivity sweep base config -- SPEC3_ADDENDUM.md
+# section 19. blobs3 C=3, n=4 qubits, matching the Phase 2 L=8 anchor's
+# dataset/optimizer settings. model.layers/readout_family/measurement_layers
+# are placeholders overridden per-arm by configs/sweeps/stage13_expressivity.yaml.
+#
+# Matched trainable-parameter count M (target ~96, R0's L=8 anchor value;
+# 12-params/layer granularity for SEL on n=4 makes exact equality impossible
+# for R1/R2, whose extra params sit in a linear head rather than the circuit
+# -- matched within +/-6 params, i.e. <=6%):
+#   R0: L=8,  circuit=96,           head/meas=0  (fixed Z_c + beta)  -> M=96
+#   R1: L=5,  circuit=60,           head=3*9+3=30 (linear head on 3C feats) -> M=90
+#   R2: L=3,  circuit=36,           head=3*18+3=57 (linear head on 3n+n(n-1)/2 feats) -> M=93
+#   R3: L=6,  circuit=72, measurement_layers=2 (2 SEL layers, 24 params)   -> M=96
+
+experiment: stage13_expressivity
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 8                   # overridden per-arm by the sweep
+  readout_family: R0           # overridden per-arm by the sweep: R0|R1|R2|R3
+  measurement_layers: 2         # only used by R3
+  reupload: true
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

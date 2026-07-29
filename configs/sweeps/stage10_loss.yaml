@@ -1,0 +1,17 @@
+# Stage 10 arm 2 -- matched CE vs MSE at L_over=8 on blobs3, 5 seeds each
+# (PLAYBOOK2.md Stage 10, SPEC2_ADDENDUM.md section 14). MSE is the loss
+# Du et al. (2023)'s theorem covers; arms are identical except train.loss.
+
+name: stage10_loss
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: loss
+
+variants:
+  - label: ce
+    overrides:
+      model.layers: 8
+  - label: mse
+    overrides:
+      model.layers: 8
+      train.loss: mse

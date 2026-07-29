@@ -1,0 +1,31 @@
+{
+  "job_id": "d9egj2hhtsac739e7ts0",
+  "backend": "ibm_kingston",
+  "hw1": {
+    "lambda": 0.6709107531603493,
+    "r2": 0.9355624638847065,
+    "residual_var": 0.002039145956881691,
+    "nc1_z_predicted": 146.40760006229976,
+    "nc1_z_observed": 0.5616897090079732,
+    "relative_error": 259.65565687660035,
+    "verdict": "REFUTED"
+  },
+  "hw2": {
+    "equiangle_dev_z_hardware_mean": 0.09821634964439384,
+    "equiangle_dev_z_hardware_std": 0.009049429838700197,
+    "equiangle_dev_z_hardware_ci95": [
+      0.08132024268486521,
+      0.11669953233102805
+    ],
+    "equiangle_dev_z_hardware_ci99_7": [
+      0.07520027590996597,
+      0.12377531935136124
+    ],
+    "equiangle_dev_z_simulator": 0.09690529459602747,
+    "n_resamples": 1000,
+    "verdict": "CONFIRMED"
+  },
+  "lambda_in_0.55_0.85": true,
+  "angle_survival_holds": true,
+  "b5_verdict": "CONFIRMED"
+}

@@ -1,0 +1,47 @@
+# Stage 2 knob attempt: n=8 qubits + digit triplet 0,1,7 combined.
+# Isolated against stage2_vqc_base with two knobs stacked (both individually
+# gave the best marginal results this session: n=8 -> 91.94%, digits 0,1,7
+# -> 93.06%, vs base's 88-92%). Testing whether combining the two
+# best-performing single-knob changes breaks the ~85-93% ceiling seen across
+# all 6 prior attempts (base, digit-triplet, lr=0.1, beta0=10, n=8 alone).
+# pca_components bumped to 8 to match n_qubits (SPEC §2 requirement).
+
+experiment: stage2_vqc_n8_017
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 7]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 8            # must equal model.n_qubits
+
+model:
+  type: vqc
+  n_qubits: 8
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 400
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

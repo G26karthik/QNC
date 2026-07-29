@@ -1,0 +1,54 @@
+# Stage 2 knob attempt: L-BFGS optimizer (new code path added this session --
+# src/qnc/train.py's `optimizer` config field was previously read but
+# silently ignored, hardcoded to Adam; now dispatches adam/lbfgs).
+# Rationale: full-batch Adam (stage2_vqc_fullbatch) reached 93.33% train acc
+# at epoch 400 with loss STILL monotonically decreasing (not plateaued) --
+# suggests slow-but-real convergence, and the VQC has only ~72 parameters
+# (StronglyEntanglingLayers.shape(L=4, n=6) = (4,6,3)), a textbook case for
+# quasi-Newton (L-BFGS) over first-order Adam. Full-batch only (L-BFGS
+# closure recomputes the full train set each step); "epoch" here = one
+# optimizer.step(closure) call, which internally runs up to
+# lbfgs_max_iter=20 L-BFGS iterations with strong-Wolfe line search.
+# Fewer "epochs" needed since each one does much more optimization work.
+
+experiment: stage2_vqc_lbfgs
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: lbfgs
+  lr: 1.0                      # LBFGS initial step size; strong_wolfe line search adapts it
+  lbfgs_max_iter: 20
+  lbfgs_history_size: 10
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 100                  # each "epoch" = one closure call w/ up to 20 internal iters
+  batch_size: 360               # ignored by lbfgs path (full-batch closure), kept for schema
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 1
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

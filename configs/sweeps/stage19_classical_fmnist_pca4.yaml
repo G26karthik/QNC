@@ -1,0 +1,10 @@
+# Stage 19 Arm V2(a) -- classical MLP, PCA-4, Fashion-MNIST. 3 seeds.
+
+name: stage19_classical_fmnist_pca4
+base_config: configs/stage19_classical_fmnist_pca4.yaml
+seeds: [0, 1, 2]
+xlabel: seed
+
+variants:
+  - label: default
+    overrides: {}

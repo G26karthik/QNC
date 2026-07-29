@@ -1,0 +1,22 @@
+# Stage 15 n=6 full-witness campaign -- SPEC3_ADDENDUM.md section 21 /
+# PLAYBOOK3.md Stage 15. Depth-probe result (configs/sweeps/stage15_n6_depth_probe.yaml,
+# results/sweeps/stage15_n6_depth_probe_20260716-160429/manifest.json):
+# ALL 8 (depth, reupload-arm) cells reached 3/3 TPT, including the smallest
+# probed depth L8 -- so L8 is the smallest fully-interpolating depth for
+# BOTH reupload=true and reupload=false. 5 seeds per arm (10 runs), full
+# SPEC2 + SPEC3 section 18 witness set via reanalyze_n6_sweep_zspace
+# (checkpoints only, no live logging of section 18 metrics per this
+# codebase's existing convention).
+
+name: stage15_n6_campaign
+base_config: configs/stage15_n6_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: reupload
+
+variants:
+  - label: L8_reupload_true
+    overrides: {model.layers: 8, model.reupload: true}
+    value: 8
+  - label: L8_reupload_false
+    overrides: {model.layers: 8, model.reupload: false}
+    value: 8

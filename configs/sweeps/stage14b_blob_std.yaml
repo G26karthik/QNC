@@ -1,0 +1,22 @@
+# Stage 14B HR5 -- PREDICTIONS.md "collapse by rotation." L=8 R0 anchor
+# (configs/stage14_mechanism_base.yaml, reupload=true, blob_std=0.8 baseline)
+# with data.blob_std in {0.2, 0.4, 0.8}, 5 seeds each. Predicts final trace_w
+# (z-space within-class variance) scales as blob_std^power with power in
+# [1.5, 2.5]: the variance floor is inherited from the data through a
+# near-rigid map.
+
+name: stage14b_blob_std
+base_config: configs/stage14_mechanism_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: blob_std
+
+variants:
+  - label: blob_std_0.2
+    overrides: {data.blob_std: 0.2}
+    value: 0.2
+  - label: blob_std_0.4
+    overrides: {data.blob_std: 0.4}
+    value: 0.4
+  - label: blob_std_0.8
+    overrides: {data.blob_std: 0.8}
+    value: 0.8

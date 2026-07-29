@@ -1,0 +1,22 @@
+{
+  "2": {
+    "run_id": "stage20_w1_campaign_spc100_remainder_reupload_false_s2_20260725-203152",
+    "total_var_max_rel_change": 5.1846406161664985e-15,
+    "nc1_z_ratio": 0.029094488560518904,
+    "fiber_fraction_final": 0.9878568182919797,
+    "n_checkpoints": 161,
+    "test_acc_final": 0.9833333492279053,
+    "tpt_reached": true,
+    "e0_epoch": 93
+  },
+  "3": {
+    "run_id": "stage20_w1_campaign_spc100_remainder_reupload_false_s3_20260725-204114",
+    "total_var_max_rel_change": 9.28808002084986e-15,
+    "nc1_z_ratio": 0.045854116125474575,
+    "fiber_fraction_final": 0.9874750301989296,
+    "n_checkpoints": 162,
+    "test_acc_final": 0.9166666865348816,
+    "tpt_reached": true,
+    "e0_epoch": 121
+  }
+}

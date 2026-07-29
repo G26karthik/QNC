@@ -1,0 +1,27 @@
+{
+  "job_id": "d9cf942neu4c739lt300",
+  "hw1": {
+    "lambda": 0.7032591539914603,
+    "r2": 0.930518292576922,
+    "residual_var": 0.0024485681495550822,
+    "nc1_z_predicted": 758.7128158810598,
+    "nc1_z_observed": 0.6748530085791519,
+    "relative_error": 1123.2638118758157,
+    "verdict": "REFUTED"
+  },
+  "hw2": {
+    "equiangle_dev_z_hardware_mean": 0.0983134197449345,
+    "equiangle_dev_z_hardware_std": 0.00815778179026602,
+    "equiangle_dev_z_hardware_ci95": [
+      0.08312296889116058,
+      0.11521141608817098
+    ],
+    "equiangle_dev_z_hardware_ci99_7": [
+      0.07446475003569639,
+      0.12199377662145153
+    ],
+    "equiangle_dev_z_simulator": 0.09690529459602747,
+    "n_resamples": 1000,
+    "verdict": "CONFIRMED"
+  }
+}

@@ -1,0 +1,33 @@
+# Stage 9 headline sweep -- SPEC2_ADDENDUM.md §12.1: L spanning ~0.1 M_c to
+# ~1.5 M_c (M = 12L, M_c_bound = 255). 5 seeds per L (never fewer, per §16).
+
+name: transition_L
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: layers (L)
+
+variants:
+  - label: L2
+    overrides: {model.layers: 2}
+    value: 2
+  - label: L4
+    overrides: {model.layers: 4}
+    value: 4
+  - label: L8
+    overrides: {model.layers: 8}
+    value: 8
+  - label: L12
+    overrides: {model.layers: 12}
+    value: 12
+  - label: L16
+    overrides: {model.layers: 16}
+    value: 16
+  - label: L21
+    overrides: {model.layers: 21}
+    value: 21
+  - label: L26
+    overrides: {model.layers: 26}
+    value: 26
+  - label: L32
+    overrides: {model.layers: 32}
+    value: 32

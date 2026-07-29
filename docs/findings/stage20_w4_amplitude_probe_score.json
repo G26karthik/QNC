@@ -1,0 +1,46 @@
+{
+  "reupload_true": {
+    "0": {
+      "run_id": "stage20_w4_amplitude_probe_reupload_true_s0_20260725-173051",
+      "total_var_max_rel_change": 0.01474974250892125,
+      "nc1_z_ratio": 0.0022761971951901876,
+      "fiber_fraction_final": 0.995533869888507,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.36666667461395264,
+      "tpt_reached": true,
+      "e0_epoch": 10
+    },
+    "1": {
+      "run_id": "stage20_w4_amplitude_probe_reupload_true_s1_20260725-181129",
+      "total_var_max_rel_change": 0.015101716417117482,
+      "nc1_z_ratio": 0.0033281132556979456,
+      "fiber_fraction_final": 0.9949576401934351,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.36666667461395264,
+      "tpt_reached": true,
+      "e0_epoch": 11
+    }
+  },
+  "reupload_false": {
+    "0": {
+      "run_id": "stage20_w4_amplitude_probe_reupload_false_s0_20260725-184550",
+      "total_var_max_rel_change": 3.984820241971971e-15,
+      "nc1_z_ratio": 0.0008702920507442184,
+      "fiber_fraction_final": 0.9930628765534874,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.9333333373069763,
+      "tpt_reached": true,
+      "e0_epoch": 6
+    },
+    "1": {
+      "run_id": "stage20_w4_amplitude_probe_reupload_false_s1_20260725-185229",
+      "total_var_max_rel_change": 5.226619274749867e-15,
+      "nc1_z_ratio": 0.0011061572087468995,
+      "fiber_fraction_final": 0.9919008379444412,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.8666666746139526,
+      "tpt_reached": true,
+      "e0_epoch": 12
+    }
+  }
+}

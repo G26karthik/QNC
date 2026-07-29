@@ -1,0 +1,48 @@
+# Stage 2 knob attempt: qubits n (PLAYBOOK Stage 2 knob #5, last untried).
+# Isolated against stage2_vqc_base (digits 0,1,2, samples 150, L4, lr 0.05,
+# beta0 5.0, reupload true -- all identical). Prior results this session:
+# digit triplet 93.06%, lr=0.1 85.56%, beta0=10 91.39% -- all still capped,
+# plateau ~epoch 100-150 then flat (expressivity-ceiling signature, not a
+# simple hyperparam issue). n=8 raises Hilbert dim d=2^8=256 (vs 64 at n=6).
+# WATCH: barren-plateau symptom per PLAYBOOK -- grad norm ~0 from epoch 0.
+# pca_components bumped to 8 to match n_qubits (SPEC §2 encoding requirement).
+
+experiment: stage2_vqc_n8
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 8            # must equal model.n_qubits
+
+model:
+  type: vqc
+  n_qubits: 8
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 400
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

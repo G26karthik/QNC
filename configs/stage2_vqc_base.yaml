@@ -1,0 +1,53 @@
+# Main VQC experiment — SPEC §2/§3. Every field here is a real knob; nothing
+# may be hardcoded in Python. The agent creates stage1_classical.yaml and
+# stage2_smoke.yaml itself per PLAYBOOK; this file anchors the schema.
+
+experiment: stage2_vqc_base
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150       # was 200; reduced per PLAYBOOK Stage 2 problem-
+                                # difficulty knob after L4/L6 x cosine/constant-lr
+                                # all plateaued ~90% train acc (capacity/optimizer
+                                # ruled out as the bottleneck)
+  test_fraction: 0.2
+  pca_components: 6            # must equal model.n_qubits
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4                    # StronglyEntanglingLayers depth (tried L=6: 91% vs
+                                # L=4's 92%, no better -- not a capacity bottleneck;
+                                # reverted to L=4 to keep cost down)
+  reupload: true               # re-apply encoding before each block
+  entangling: true             # false = ablation ansatz (Stage 4)
+  beta0: 5.0                   # initial inverse temperature on logits
+  beta_learnable: true
+  beta_max: 50.0               # clamp, prevents logit explosion / NaN
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant   # constant | cosine_last_half -- cosine was decaying lr
+                          # from epoch 200 while train acc was still climbing
+                          # (88.96% @300 -> 90.42% @400); trying undecayed lr next
+  weight_decay: 0.0            # L2 on variational angles (Stage 4 sweep)
+  epochs: 400
+  batch_size: 32
+  tpt_multiple: 5              # keep training until >= 5 * E0
+  shots: null                  # exact statevector; integer only in Stage 5
+  # no device knob: train_vqc() forces CPU -- PennyLane default.qubit's internal
+  # statevector init doesn't follow input tensor placement onto cuda in this
+  # PennyLane version, so a GPU model/input crashes with a device mismatch.
+
+logging:
+  log_interval_dense: 1        # every epoch for first `dense_until` epochs
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half      # entropy cut, fixed for all runs (SPEC §4.4)
+  compute_on: [train, test]    # collapse defined on train (SPEC §7)

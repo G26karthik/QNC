@@ -1,0 +1,47 @@
+# Stage 2 smoke test — VQC per SPEC §2 on a small synthetic problem.
+# Purpose: confirm the quantum training loop, encoding, and NC epoch hook
+# work end-to-end before spending compute on the MNIST-based main run.
+
+experiment: stage2_smoke
+seed: 0
+
+data:
+  dataset: two_moons
+  n_samples: 200               # 100/class
+  noise: 0.2
+  test_fraction: 0.2
+  pca_components: 2            # raw dim = 2 < n_qubits; qubits 2,3 stay idle
+                                # (no encoding, still hit by variational/entangling gates)
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 3
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 300
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null                  # exact statevector; integer only in Stage 5
+  # no device knob: train_vqc() forces CPU -- PennyLane default.qubit's internal
+  # statevector init doesn't follow input tensor placement onto cuda in this
+  # PennyLane version, so a GPU model/input crashes with a device mismatch.
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half      # entropy cut, fixed for all runs (SPEC §4.4)
+  compute_on: [train, test]

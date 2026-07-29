@@ -1,0 +1,14 @@
+# Stage 19 -- reupload=false half of stage19_mnist_campaign, never started
+# before the background process was killed. This is the headline
+# scoreable claim (i) -- machine-precision total_var invariance -- and is
+# independent of whether TPT is reached (linear-algebra property of the
+# fixed-pre-image unitary, per T5/HR2/HN1/HR6/HN5/B2/B3 precedent).
+
+name: stage19_mnist_campaign_false
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false}

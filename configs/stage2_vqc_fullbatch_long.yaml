@@ -1,0 +1,46 @@
+# Stage 2 knob attempt: full-batch Adam, extended epoch budget (untried).
+# stage2_vqc_fullbatch (400 epochs) reached 93.33% train acc with loss still
+# monotonically decreasing at the final logged epoch (0.39->0.22 over the
+# last 260 epochs, no plateau) -- unlike mini-batch runs which flattened
+# hard by epoch ~150. Testing whether the run simply needed more epochs.
+# 3000 epochs at ~0.32s/epoch (measured on stage2_vqc_fullbatch) ~ 16min.
+
+experiment: stage2_vqc_fullbatch_long
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 3000
+  batch_size: 360
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 10
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

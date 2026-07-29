@@ -1,0 +1,14 @@
+# Stage 18 arm B1 campaign -- PREDICTIONS.md "Stage 18 preregistration",
+# arm B1. lr=0.1 won the lr-pick sweep (stage18_sgd_lr_pick: both lr=0.05
+# and lr=0.1 reached TPT at E0=9/8 respectively; lr=0.1 had the lower final
+# loss, 0.0012 vs 0.0024 -- tie-break per the preregistered rule). 5 seeds,
+# SGD momentum=0.9, n=4 L=8 R0 reupload=false.
+
+name: stage18_sgd_campaign
+base_config: configs/stage18_sgd_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: sgd_momentum_lr10
+    overrides: {train.lr: 0.1}

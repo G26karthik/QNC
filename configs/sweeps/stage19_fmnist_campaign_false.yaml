@@ -1,0 +1,12 @@
+# Stage 19 -- reupload=false half of stage19_fmnist_campaign, never
+# started before the background process was killed. Headline scoreable
+# claim (i), independent of TPT -- see stage19_mnist_campaign_false.yaml.
+
+name: stage19_fmnist_campaign_false
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false}

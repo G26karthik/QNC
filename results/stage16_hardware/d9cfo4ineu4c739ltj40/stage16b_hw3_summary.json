@@ -1,0 +1,12 @@
+{
+  "job_id": "d9cfo4ineu4c739ltj40",
+  "backend": "ibm_marrakesh",
+  "nc1_z_untrained_hardware": 63.5945351845544,
+  "nc1_z_untrained_simulator": 153.52422217623376,
+  "hw3": {
+    "nc1_z_untrained": 63.5945351845544,
+    "nc1_z_trained": 0.6748530085791519,
+    "ratio": 94.23464721369106,
+    "verdict": "CONFIRMED"
+  }
+}

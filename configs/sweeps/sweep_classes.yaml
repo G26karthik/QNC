@@ -1,0 +1,20 @@
+# Stage 4 class-count sweep: C = 2, 3, 4, n=6 fixed (n >= C required, SPEC §2).
+# etf_target = -1/(C-1) differs per config (-1, -0.5, -1/3); figures.py
+# derives it per-run from class_mean_norms length (figures.py:174), so no
+# manual etf_target field is needed here.
+
+name: sweep_classes
+base_config: configs/stage2_vqc_base.yaml
+seeds: [0, 1, 2]
+xlabel: C (num classes)
+
+variants:
+  - label: C2
+    overrides: {data.classes: [0, 1]}
+    value: 2
+  - label: C3
+    overrides: {}
+    value: 3
+  - label: C4
+    overrides: {data.classes: [0, 1, 2, 3]}
+    value: 4

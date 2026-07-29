@@ -1,0 +1,12 @@
+# Stage 19 remainder: reupload_true seeds 2-4 (0,1 completed before the
+# background process was killed externally mid-sweep; seed 2 died
+# mid-training, left uncleaned per CLAUDE.md invariant 3).
+
+name: stage19_fmnist_campaign_remainder
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true}

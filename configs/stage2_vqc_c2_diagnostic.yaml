@@ -1,0 +1,47 @@
+# Diagnostic run, not the Stage 2 anchor. 4 tuning attempts on the C=3 anchor
+# (stage2_vqc_base.yaml: L4/L6 x cosine/constant-lr x 200/150 samples) all
+# plateaued at 88-92% train acc, never reaching TPT. This isolates whether the
+# bottleneck is the 3-class task / PCA-6 encoding, or the VQC/training loop
+# itself, by dropping to the easiest possible case: C=2 (digits 0, 1).
+# Same architecture as the best C=3 attempt (L=4, reupload, constant lr).
+
+experiment: stage2_vqc_c2_diagnostic
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1]               # C = 2 -> etf_target = -1
+  samples_per_class: 200
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 400
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+  # no device knob: train_vqc() forces CPU (see stage2_vqc_base.yaml comment)
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

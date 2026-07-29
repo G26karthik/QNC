@@ -1,0 +1,10 @@
+{
+  "run_id": "stage20_w1_campaign_spc100_remainder_reupload_false_s4_20260725-205036",
+  "total_var_max_rel_change": 7.497078985732826e-15,
+  "nc1_z_ratio": 0.0033045407083867194,
+  "fiber_fraction_final": 0.9887236254376345,
+  "n_checkpoints": 185,
+  "test_acc_final": 0.9666666388511658,
+  "tpt_reached": true,
+  "e0_epoch": 144
+}

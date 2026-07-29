@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "Collapse by Rotation: Training-Dynamics Neural Collapse in Variational Quantum Circuits, Verified on Real Vision Data"
+authors:
+  - family-names: "Koundinya"
+    given-names: "G Karthik"
+    orcid: "https://orcid.org/0009-0003-2088-6208"
+    affiliation: "Department of Computer Science and Engineering, Geethanjali College of Engineering and Technology"
+    email: karthikofficialmain@gmail.com
+repository-code: "https://github.com/G26karthik/QNC"
+url: "https://github.com/G26karthik/QNC"
+abstract: >-
+  Investigates the training dynamics of Neural Collapse in Variational
+  Quantum Circuits. Shows that a trained VQC collapses only in the
+  measurement-visible subspace read by the loss, while the full
+  representation's Hilbert-Schmidt geometry is provably and numerically
+  (~1e-15 relative change) invariant under training -- collapse is a
+  training-driven rotation, not a contraction. Verified to machine
+  precision on a synthetic benchmark, real vision data (MNIST,
+  Fashion-MNIST), three qubit counts, and two independent IBM hardware
+  backends.
+keywords:
+  - neural collapse
+  - variational quantum circuits
+  - representation geometry
+  - measurement subspace
+  - terminal phase of training
+  - quantum machine learning
+license: CC-BY-4.0
+version: 1.0.0
+date-released: "2026-07-29"
+preferred-citation:
+  type: article
+  title: "Collapse by Rotation: Training-Dynamics Neural Collapse in Variational Quantum Circuits, Verified on Real Vision Data"
+  authors:
+    - family-names: "Koundinya"
+      given-names: "G Karthik"
+      orcid: "https://orcid.org/0009-0003-2088-6208"
+  year: 2026
+  journal: "Quantum Machine Intelligence (submitted)"

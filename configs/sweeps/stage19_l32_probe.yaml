@@ -1,0 +1,16 @@
+# Stage 19 capacity check (deviation, not in original preregistration):
+# L=8 and L=16 both plateau at train acc ~0.90-0.98 without reaching TPT on
+# MNIST-PCA4 and Fashion-MNIST-PCA4 (n=4, R0), while the capacity-matched
+# classical MLP reaches 100% train acc easily on the same features --
+# suggests an ansatz-expressivity ceiling, not a depth-insufficiency issue.
+# One more depth doubling (L=32) as a final capacity check, 2 seeds each
+# dataset, before accepting the ceiling as a reportable finding.
+
+name: stage19_l32_probe
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1]
+xlabel: seed
+
+variants:
+  - label: mnist_l32
+    overrides: {model.layers: 32, model.reupload: true}

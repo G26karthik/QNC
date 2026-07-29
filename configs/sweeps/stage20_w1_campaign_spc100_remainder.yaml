@@ -1,0 +1,14 @@
+# Stage 20 Arm W1 spc=100 remainder -- the original spc100 sweep was killed
+# by the background-task execution environment's wall-clock ceiling
+# (same known issue as Stage 19, STAGE19_FINDINGS.md deviation 4) after
+# completing reupload_true (5/5) and reupload_false seeds 0-1 (seed 2 was
+# cut mid-training at epoch ~115/600, incomplete, rerun here alongside 3-4).
+
+name: stage20_w1_campaign_spc100_remainder
+base_config: configs/stage19_mnist_base.yaml
+seeds: [2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false, data.samples_per_class: 100}

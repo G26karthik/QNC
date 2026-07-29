@@ -1,0 +1,19 @@
+{
+  "job_id": "d9cfo4ineu4c739ltj40",
+  "backend": "ibm_marrakesh",
+  "final_status": "DONE",
+  "metrics": {
+    "caller": "qiskit_ibm_runtime~sampler.py",
+    "qiskit_version": "qiskit_ibm_runtime-0.48.0,qiskit-2.5.0*,qiskit_aer-0.17.2",
+    "timestamps": {
+      "created": "2026-07-16T15:43:14.778402Z",
+      "finished": "2026-07-16T15:45:25.466262Z",
+      "running": "2026-07-16T15:43:15.977848Z"
+    },
+    "usage": {
+      "qpu_charge_time_seconds": 104,
+      "status": "complete"
+    },
+    "circuits_execution_time_ns": 101716635904
+  }
+}

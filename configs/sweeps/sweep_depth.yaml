@@ -1,0 +1,19 @@
+# Stage 4 depth sweep: L = 2, 4, 6 at n=6, C=3 (fixed), per PLAYBOOK.
+# Base = stage2_vqc_base; Stage 2 already tried L4/L6 (91% vs 92%, not a
+# capacity bottleneck) without TPT, so tpt_reached=false is expected here too.
+
+name: sweep_depth
+base_config: configs/stage2_vqc_base.yaml
+seeds: [0, 1, 2]
+xlabel: layers (L)
+
+variants:
+  - label: L2
+    overrides: {model.layers: 2}
+    value: 2
+  - label: L4
+    overrides: {}
+    value: 4
+  - label: L6
+    overrides: {model.layers: 6}
+    value: 6

@@ -1,0 +1,17 @@
+# Stage 20 Arm W1 probe -- MNIST {0,1,2}, n=4, L=16, R0, samples_per_class=50
+# (the cell most likely to interpolate), both reupload arms, 2 seeds each.
+# Authorized to run before PREDICTIONS.md's Stage 20 section commit lands
+# in the same session (already committed at 85ed631). Gates the full 20-run
+# campaign vs. a 12-run fallback per the fixed trim rule in PREDICTIONS.md
+# "Stage 20 preregistration", Arm W1.
+
+name: stage20_w1_probe
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true, data.samples_per_class: 50}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false, data.samples_per_class: 50}

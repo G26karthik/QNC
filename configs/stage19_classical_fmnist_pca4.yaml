@@ -1,0 +1,35 @@
+# Stage 19 Arm V2(a) -- classical MLP, capacity-matched, on Fashion-MNIST
+# PCA-4. See stage19_classical_mnist_pca4.yaml for architecture rationale.
+
+experiment: stage19_classical_fmnist_pca4
+seed: 0
+
+data:
+  dataset: fashion_mnist
+  classes: [0, 1, 2]
+  samples_per_class: 200
+  test_fraction: 0.2
+  pca_components: 4
+
+model:
+  type: mlp
+  hidden_dims: [64, 16]
+
+train:
+  optimizer: sgd
+  lr: 0.05
+  momentum: 0.9
+  weight_decay: 0.0005
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  device: auto
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  compute_on: [train, test]

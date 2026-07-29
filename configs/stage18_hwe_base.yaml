@@ -1,0 +1,51 @@
+# Stage 18 arm B2 base config -- PREDICTIONS.md "Stage 18 preregistration",
+# arm B2 (ansatz generality: hardware-efficient ansatz, per-qubit RY-RZ +
+# linear-chain CNOT entangler, models.py's existing `ansatz:
+# hardware_efficient`). n=4 anchor (blobs3 headline config,
+# configs/stage9_transition.yaml's recipe), R0 readout. model.layers and
+# model.reupload are placeholders overridden by the depth-probe and
+# campaign sweeps.
+
+experiment: stage18_hwe
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 8                    # placeholder; overridden by depth-probe/campaign sweeps
+  reupload: true                # placeholder; overridden by depth-probe/campaign sweeps
+  ansatz: hardware_efficient
+  readout_family: R0
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

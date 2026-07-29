@@ -1,0 +1,46 @@
+# Stage 9 headline experiment base config -- SPEC2_ADDENDUM.md §12.
+# n=4 qubits (Hilbert dim 16, full su(16) dim = 255 = M_c_bound), C=3 via
+# blobs3. model.layers is a placeholder base value; the transition_L sweep
+# overrides it per-variant across L in {2,4,8,12,16,21,26,32}.
+
+experiment: stage9_transition
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 21                   # ~M_c (252 params vs M_c_bound=255); overridden by the sweep
+  reupload: true
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

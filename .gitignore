@@ -1,0 +1,35 @@
+results/
+__pycache__/
+*.pyc
+*.ckpt
+.venv/
+.pytest_cache/
+*.egg-info/
+data_cache/
+
+# session/tooling scratch (not part of the research artifact)
+*.log
+*_runner.py
+.claude/
+.serena/
+graphify-out/
+desktop.ini
+
+# loose root-level stage-scoring scratch (curated copies live in scripts/ and
+# docs/findings/; this rule is root-anchored and does not affect
+# scripts/, docs/findings/, or configs/sweeps/stage*.yaml)
+/stage*
+
+# personal working documents, not the submission paper
+/ABSTRACT_UPDATED.md
+/THEOREM_WALKTHROUGH.md
+/PROJECT_STORY.pdf
+/QNC_Research_Report*.*
+/Quantum_Neural_Collapse_Abstract.docx
+/*.docx
+
+# LaTeX build artifacts (main.pdf and main.bbl are committed; the rest regenerate)
+paper/main.aux
+paper/main.blg
+paper/main.log
+paper/main.out

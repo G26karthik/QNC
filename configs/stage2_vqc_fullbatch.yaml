@@ -1,0 +1,50 @@
+# Stage 2 knob attempt: full-batch gradient descent (untried knob, not in
+# original PLAYBOOK list but implied by "Optimizer" category). Diagnostic
+# this session ruled out data/PCA information loss (classical SVC-rbf/RF
+# hit 98.9-100% train acc on the identical PCA-6 encoded features; no
+# cross-class near-duplicate points found, min opposite-class NN dist well
+# above 0.3). Root-cause check showed misclassified samples are ~disjoint
+# across VQC runs (init-dependent, not fixed hard samples) -- consistent
+# with mini-batch SGD noise preventing exact convergence to zero error on
+# this small (360-sample) train set. batch_size = 360 = full train set
+# removes that noise; everything else identical to stage2_vqc_base.
+
+experiment: stage2_vqc_fullbatch
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 400
+  batch_size: 360              # full-batch: 150*3*0.8 = 360 train samples
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

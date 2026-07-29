@@ -1,0 +1,53 @@
+# Stage 14 mechanism-arm base config -- SPEC3_ADDENDUM.md section 20 (as
+# reframed by PREDICTIONS.md's "Stage 14 preregistration -- mechanism tests
+# of the scaling-escape hypothesis" section). L=8, R0 readout (fixed Z_c +
+# beta, no trainable head), matching the Stage 13 matched-M L=8 R0 baseline
+# arm's dataset/optimizer/model settings exactly so arms 1/3/6 differ from
+# that baseline only in the single overridden knob each preregisters
+# (model.beta_max / train.label_smoothing / model.beta_learnable+model.beta0).
+# Overridden per-arm by configs/sweeps/stage14_mechanism_arms.yaml.
+
+experiment: stage14_mechanism
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 8
+  readout_family: R0
+  measurement_layers: 2
+  reupload: true
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  label_smoothing: 0.0
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

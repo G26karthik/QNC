@@ -1,0 +1,21 @@
+# Stage 4 capacity sweep: n_qubits = 4, 6, 8 at C=3 (fixed), per PLAYBOOK.
+# Base = stage2_vqc_base (C=3), which the Stage 2 tuning campaign never got
+# to TPT with StronglyEntanglingLayers (best 98.89%, hardware-efficient
+# ansatz) -- these runs may log tpt_reached=false; report factually.
+# pca_components must track n_qubits (models.py encode_dim == n_qubits).
+
+name: sweep_qubits
+base_config: configs/stage2_vqc_base.yaml
+seeds: [0, 1, 2]
+xlabel: n_qubits
+
+variants:
+  - label: n4
+    overrides: {model.n_qubits: 4, data.pca_components: 4}
+    value: 4
+  - label: n6
+    overrides: {}
+    value: 6
+  - label: n8
+    overrides: {model.n_qubits: 8, data.pca_components: 8}
+    value: 8

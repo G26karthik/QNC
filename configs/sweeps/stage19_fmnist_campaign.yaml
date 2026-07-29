@@ -1,0 +1,14 @@
+# Stage 19 Arm V1 campaign -- Fashion-MNIST {0,1,2}, n=4 L=16 R0 (trim rule
+# triggered: stage19_fmnist_probe seed 0 never reached TPT at L=8 across
+# 600 epochs), both reupload arms, 5 seeds each.
+
+name: stage19_fmnist_campaign
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false}

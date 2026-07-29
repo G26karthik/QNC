@@ -1,0 +1,17 @@
+# Recovery config: the original stage13b_fixed_depth sweep's background
+# process was killed after R1 (5 seeds) and R2 seeds 0-2 completed; R2 seed 3
+# died mid-training (epoch 460/600, dir
+# results/stage13b_fixed_depth_R2_s3_20260714-133921, left in place per
+# CLAUDE.md, not used) and seed 4 never started. This reruns only the
+# missing two R2 seeds; the manifest is assembled by hand from all three
+# partial run sets (see STAGE13B_FINDINGS.md).
+
+name: stage13b_fixed_depth_r2_remainder
+base_config: configs/stage13_expressivity.yaml
+seeds: [3, 4]
+xlabel: readout family (fixed depth, remainder)
+
+variants:
+  - label: R2
+    overrides: {model.layers: 8, model.readout_family: R2}
+    value: 2

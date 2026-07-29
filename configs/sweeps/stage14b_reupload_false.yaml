@@ -1,0 +1,16 @@
+# Stage 14B HR2/HR3 -- PREDICTIONS.md "collapse by rotation." L=8 R0 anchor
+# (configs/stage14_mechanism_base.yaml) with reupload=false: the encoding is
+# applied once, so the trained circuit is a single global unitary conjugating
+# each sample's fixed pre-image state, an isometry of Hilbert-Schmidt
+# distance. HR2 predicts total_var (v_meas+v_fiber) is exactly constant
+# under training; HR3 predicts nc1_z still decays >= 1 order of magnitude
+# among whichever seeds reach TPT.
+
+name: stage14b_reupload_false
+base_config: configs/stage14_mechanism_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: reupload
+
+variants:
+  - label: reupload_false
+    overrides: {model.reupload: false}

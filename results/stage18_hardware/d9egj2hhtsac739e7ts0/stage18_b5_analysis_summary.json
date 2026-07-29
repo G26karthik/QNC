@@ -1,0 +1,20 @@
+{
+  "job_id": "d9egj2hhtsac739e7ts0",
+  "backend": "ibm_kingston",
+  "n_samples": 180,
+  "shots_per_sample": 2048,
+  "nc1_z_hardware": 0.5616897090079732,
+  "nc1_z_simulator": 0.547190626026091,
+  "r_z_hardware": 1.5206584782057755,
+  "r_z_simulator": 1.5262151009125646,
+  "mean_margin_hardware": 0.16719835069444444,
+  "mean_margin_simulator": 0.24176514698244386,
+  "min_margin_hardware": -0.37890625,
+  "min_margin_simulator": -0.4511462819995054,
+  "d_box_hardware": 1.555250572981196,
+  "d_box_simulator": 1.4731571290753809,
+  "max_abs_diff_z": 0.298786626526213,
+  "mean_abs_diff_z": 0.0765902084610072,
+  "mean_shot_noise_std_z": 0.021734479634243374,
+  "fraction_within_shot_noise": 0.17222222222222222
+}

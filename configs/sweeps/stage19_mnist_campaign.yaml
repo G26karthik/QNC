@@ -1,0 +1,16 @@
+# Stage 19 Arm V1 campaign -- MNIST {0,1,2}, n=4 L=16 R0 (PREREGISTRATION
+# DEVIATION: bumped from L=8, which never reached TPT -- see
+# stage19_mnist_base.yaml), both reupload arms, 5 seeds each. Seeds 0-2 of
+# each variant are reused by Arm V2(b)/(c) (PREDICTIONS.md "Stage 19
+# preregistration") rather than rerun.
+
+name: stage19_mnist_campaign
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false}

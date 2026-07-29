@@ -1,0 +1,48 @@
+# Stage 19 Arm V1 -- Fashion-MNIST classes {0,1,2} = T-shirt/top, Trouser,
+# Pullover, C=3, PCA-4, n=4 qubits. model.layers/reupload are placeholders:
+# layers overridden per the preregistered TPT-probe trim rule (L=8 unless
+# the 2-seed probe fails, then L=16), reupload overridden by the campaign
+# sweep (both arms run).
+
+experiment: stage19_fmnist
+seed: 0
+
+data:
+  dataset: fashion_mnist
+  classes: [0, 1, 2]
+  samples_per_class: 200
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 16                   # trim rule triggered: probe seed 0 never reached
+                                # TPT at L=8 (600 epochs, tpt_reached=false
+                                # throughout) -- STAGE19_FINDINGS.md deviation note
+  reupload: true                # placeholder; overridden by the campaign sweep
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

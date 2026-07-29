@@ -1,0 +1,48 @@
+# Stage 5 falsification check 3: random-init (no learning) null distribution.
+# Same anchor architecture as stage2_vqc_c2_diagnostic.yaml, but train.epochs:
+# 0 means the training while-loop in train_vqc never executes -- only the
+# analytic-state epoch-0 baseline (already logged unconditionally, mirroring
+# the classical hook) is recorded. This gives the null distribution of
+# equiangle_dev / qnc1_trace / qnc1_hs etc. under NO learning, one JSONL
+# record per seed. Run for seeds 0-9 via:
+#   python -m qnc.run configs/stage5_random_init.yaml --seed <0..9>
+
+experiment: stage5_random_init
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1]
+  samples_per_class: 200
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 4
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 0
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: false
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

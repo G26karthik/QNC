@@ -1,0 +1,14 @@
+# Stage 19 remainder: previous stage19_mnist_campaign background process
+# was killed externally mid-sweep. seed 0 of reupload_true completed
+# (stage19_mnist_campaign_reupload_true_s0_20260724-211115); seed 1 died
+# mid-training (uncleaned per CLAUDE.md invariant 3). This remainder
+# covers reupload_true seeds 1-4 and all of reupload_false (never started).
+
+name: stage19_mnist_campaign_remainder
+base_config: configs/stage19_mnist_base.yaml
+seeds: [1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true}

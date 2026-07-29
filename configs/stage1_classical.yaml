@@ -1,0 +1,43 @@
+# Classical NC control experiment — SPEC §5. Validates the measurement
+# pipeline (metrics.py) on a phenomenon known to exist before any quantum
+# work (PLAYBOOK Stage 1).
+
+experiment: stage1_classical
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [3, 5, 8]           # C = 3 -> etf_target = -0.5; confusable digits
+                               # (3/5/8) chosen over 0/1/2: the latter are
+                               # near-linearly-separable in raw pixels, so a
+                               # random net already spreads class means at init
+                               # (init NC1 ~0.42), compressing NC1's dynamic
+                               # range. 3/5/8 give init NC1 ~1.3 -> ~1.3 orders
+                               # of NC1 decay and cleaner equiangularity.
+  samples_per_class: 500
+  test_fraction: 0.2
+
+model:
+  type: mlp
+  hidden_dims: [512, 512, 64]  # SPEC §5: 784 -> 512 -> 512 -> 64 -> C, ReLU
+
+train:
+  optimizer: sgd
+  lr: 0.05
+  momentum: 0.9
+  weight_decay: 0.0005          # PyYAML parses "5e-4" (no decimal point) as a string, not float
+  epochs: 1500                  # collapse continues slowly well past zero train
+                               # error; ~1500 epochs needed for NC1 to reach its
+                               # architectural floor (tiny set: ~12 batches/epoch)
+  batch_size: 128
+  tpt_multiple: 5              # keep training until >= 5 * E0
+  device: auto                 # cuda if available, else cpu
+
+logging:
+  log_interval_dense: 1        # every epoch for first `dense_until` epochs
+  dense_until: 50
+  log_interval_sparse: 10
+  checkpoint: true
+
+metrics:
+  compute_on: [train, test]    # collapse defined on train (SPEC §7)

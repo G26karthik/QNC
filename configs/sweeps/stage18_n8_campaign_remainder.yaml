@@ -1,0 +1,17 @@
+# Stage 18 arm B3 campaign -- n=8, L8 confirmed as the interpolating depth
+# (3/3 TPT: seed0 E0=40 from the timing probe, seed1 E0=38, seed2 E0=24
+# from the remainder run). Per the preregistered trim rule and the user's
+# explicit framing ("the scientific target is one clean interpolating n=8
+# point, not a full depth curve"), L32 is skipped entirely -- L8 already
+# is that one clean point. Seeds 0-2 reused from
+# stage18_n8_s0_20260718-121735 / stage18_n8_depth_probe_l8_remainder_L8_s{1,2};
+# only seeds 3-4 run here.
+
+name: stage18_n8_campaign_remainder
+base_config: configs/stage18_n8_base.yaml
+seeds: [3, 4]
+xlabel: seed
+
+variants:
+  - label: L8_reupload_true
+    overrides: {model.layers: 8, model.reupload: true}

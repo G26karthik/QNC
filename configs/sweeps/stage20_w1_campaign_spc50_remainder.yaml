@@ -1,0 +1,14 @@
+# Stage 20 Arm W1 full campaign, spc=50 remainder -- probe (seeds 0-1) hit
+# 4/4 TPT, triggering the full-campaign trim rule (PREDICTIONS.md "Stage 20
+# preregistration", Arm W1). Seeds 2-4 complete the 5-seed spc=50 cells.
+
+name: stage20_w1_campaign_spc50_remainder
+base_config: configs/stage19_mnist_base.yaml
+seeds: [2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true, data.samples_per_class: 50}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false, data.samples_per_class: 50}

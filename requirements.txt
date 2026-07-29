@@ -1,0 +1,8 @@
+pennylane
+numpy
+scipy
+matplotlib
+scikit-learn
+torch
+pytest
+pyyaml

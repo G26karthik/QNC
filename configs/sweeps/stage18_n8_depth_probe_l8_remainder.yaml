@@ -1,0 +1,15 @@
+# Stage 18 arm B3 depth probe -- L8 remainder. Seed 0 already completed as
+# the timing/feasibility probe (stage18_n8_s0_20260718-121735, TPT reached,
+# E0=40) -- reused here rather than rerun, per this project's established
+# "remainder" convention (e.g. stage14b_blob_std_04_remainder.yaml). Only
+# seeds 1-2 run here to complete the 3-seed L8 depth-probe cell.
+
+name: stage18_n8_depth_probe_l8_remainder
+base_config: configs/stage18_n8_base.yaml
+seeds: [1, 2]
+xlabel: layers (L)
+
+variants:
+  - label: L8
+    overrides: {model.layers: 8, model.reupload: true}
+    value: 8

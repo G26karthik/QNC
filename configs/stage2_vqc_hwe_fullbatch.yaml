@@ -1,0 +1,50 @@
+# Stage 2 knob attempt: hardware-efficient ansatz (new, this session) +
+# full-batch Adam + long epoch budget -- combining the two best findings so
+# far: (1) full-batch Adam at 3000 epochs was the best result (95.28%
+# train acc) of all StronglyEntanglingLayers attempts, still slowly
+# converging; (2) a genuinely different ansatz functional form (RY+RZ per
+# qubit + linear CNOT ladder, vs StronglyEntanglingLayers' ring topology)
+# may have a friendlier optimization landscape for exact interpolation.
+# layers=6 matches param count (72) to stage2_vqc_base's strongly_entangling
+# L4,n6 for a fair comparison. Smoke-tested via stage2_vqc_hwe_smoke first.
+
+experiment: stage2_vqc_hwe_fullbatch
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]          # C = 3  -> etf_target = -0.5
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 6
+  ansatz: hardware_efficient
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  weight_decay: 0.0
+  epochs: 3000
+  batch_size: 360
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 10
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

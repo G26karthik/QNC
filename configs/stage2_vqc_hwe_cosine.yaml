@@ -1,0 +1,48 @@
+# Stage 2 knob attempt: hardware-efficient ansatz + cosine lr decay.
+# stage2_vqc_hwe_fullbatch (constant lr) hit 98.89% train acc (peak 99.17%)
+# at epoch 3000, loss flat at ~0.055 -- oscillating near-optimum, likely
+# unable to land exactly on 100% because constant lr keeps stepping past
+# the minimum. cosine_last_half decays lr from epoch 1500 to a 0.5% floor
+# by epoch 3000, which should let it settle into the minimum instead of
+# oscillating around it.
+
+experiment: stage2_vqc_hwe_cosine
+seed: 0
+
+data:
+  dataset: mnist
+  classes: [0, 1, 2]
+  samples_per_class: 150
+  test_fraction: 0.2
+  pca_components: 6
+
+model:
+  type: vqc
+  n_qubits: 6
+  layers: 6
+  ansatz: hardware_efficient
+  reupload: true
+  entangling: true
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: cosine_last_half
+  weight_decay: 0.0
+  epochs: 3000
+  batch_size: 360
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 10
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

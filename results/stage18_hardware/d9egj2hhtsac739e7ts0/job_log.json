@@ -1,0 +1,19 @@
+{
+  "job_id": "d9egj2hhtsac739e7ts0",
+  "backend": "ibm_kingston",
+  "final_status": "DONE",
+  "metrics": {
+    "caller": "qiskit_ibm_runtime~sampler.py",
+    "qiskit_version": "qiskit_ibm_runtime-0.48.0,qiskit-2.5.0*,qiskit_aer-0.17.2",
+    "timestamps": {
+      "created": "2026-07-19T17:29:46.486834Z",
+      "finished": "2026-07-19T17:39:49.438307Z",
+      "running": "2026-07-19T17:34:01.263016Z"
+    },
+    "usage": {
+      "qpu_charge_time_seconds": 102,
+      "status": "complete"
+    },
+    "circuits_execution_time_ns": 99158215680
+  }
+}

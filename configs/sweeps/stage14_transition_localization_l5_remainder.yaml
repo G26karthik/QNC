@@ -1,0 +1,15 @@
+# Recovery config: reruns only the missing L5 seed 9 (killed mid-training at
+# epoch 850/1200, dir results/stage14_transition_localization_L5_s9_20260715-004730,
+# left in place per CLAUDE.md invariant 3, not used). See
+# configs/sweeps/stage14_transition_localization_remainder.yaml for the L6
+# recovery (all 10 seeds, never started).
+
+name: stage14_transition_localization_l5_remainder
+base_config: configs/stage9_transition.yaml
+seeds: [9]
+xlabel: layers (L), remainder
+
+variants:
+  - label: L5
+    overrides: {model.layers: 5}
+    value: 5

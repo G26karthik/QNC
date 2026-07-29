@@ -1,0 +1,14 @@
+# Stage 20 Arm W1 full campaign, spc=100 cells -- 5 fresh seeds each,
+# triggered by the spc=50 probe's 4/4 TPT per the fixed trim rule
+# (PREDICTIONS.md "Stage 20 preregistration", Arm W1).
+
+name: stage20_w1_campaign_spc100
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: reupload_true
+    overrides: {model.layers: 16, model.reupload: true, data.samples_per_class: 100}
+  - label: reupload_false
+    overrides: {model.layers: 16, model.reupload: false, data.samples_per_class: 100}

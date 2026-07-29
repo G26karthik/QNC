@@ -1,0 +1,20 @@
+# Stage 5 falsification check 2: shuffled-labels control. If training acc
+# reaches 100% on randomly-permuted labels (pure memorization -- no class
+# structure to learn), the NC metrics should NOT collapse the same way as
+# on real labels: a model that merely converges must not trivially produce
+# the QNC signal. Train labels only are permuted (seeded, train.py
+# shuffle_labels()); test labels stay real. Same anchor base as
+# ablation_entangling / stage5_shots.
+
+name: stage5_shuffled_labels
+base_config: configs/stage2_vqc_c2_diagnostic.yaml
+seeds: [0, 1, 2]
+xlabel: labels
+
+variants:
+  - label: real_labels
+    overrides: {}
+    value: "real"
+  - label: shuffled_labels
+    overrides: {data.shuffle_labels: true}
+    value: "shuffled"

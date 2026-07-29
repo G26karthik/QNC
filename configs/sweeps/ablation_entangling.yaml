@@ -1,0 +1,18 @@
+# Stage 4 key scientific ablation: does collapse require entanglement?
+# Base = stage2_vqc_c2_diagnostic (the only config that reaches TPT, per
+# Stage 3 anchor decision, commit 28fb115) -- testing entangling=false against
+# a config that never converges would confound "no entanglement" with
+# "never interpolates."
+
+name: ablation_entangling
+base_config: configs/stage2_vqc_c2_diagnostic.yaml
+seeds: [0, 1, 2]
+xlabel: entangling
+
+variants:
+  - label: entangling_true
+    overrides: {}
+    value: "true"
+  - label: entangling_false
+    overrides: {model.entangling: false}
+    value: "false"

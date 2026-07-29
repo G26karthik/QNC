@@ -1,0 +1,12 @@
+# Stage 19 Arm V1 -- Fashion-MNIST TPT-reachability probe (PREDICTIONS.md
+# "Stage 19 preregistration", Arm V1 trim rule). L=8, reupload=true, 2 seeds.
+# Decides L=8 vs L=16 for the full FMNIST campaign per the fixed trim rule.
+
+name: stage19_fmnist_probe
+base_config: configs/stage19_fmnist_base.yaml
+seeds: [0, 1]
+xlabel: seed
+
+variants:
+  - label: l8_reupload_true
+    overrides: {model.layers: 8, model.reupload: true}

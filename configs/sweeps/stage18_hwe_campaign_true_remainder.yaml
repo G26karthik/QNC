@@ -1,0 +1,16 @@
+# Stage 18 arm B2 campaign -- reupload=true leg. L8 confirmed as the
+# smallest interpolating depth (3/3 TPT in the depth probe, E0=59-185;
+# L32 run in progress killed as scientifically unnecessary once L8's 3/3
+# result was seen -- deviation from running the full {8,16,32,64} depth
+# probe to completion, documented here and in STAGE18_FINDINGS.md).
+# Seeds 0-2 reused from the depth probe (stage18_hwe_depth_probe_L8_s{0,1,2}),
+# per this project's "remainder" convention; only seeds 3-4 run here.
+
+name: stage18_hwe_campaign_true_remainder
+base_config: configs/stage18_hwe_base.yaml
+seeds: [3, 4]
+xlabel: seed
+
+variants:
+  - label: L8_reupload_true
+    overrides: {model.layers: 8, model.reupload: true}

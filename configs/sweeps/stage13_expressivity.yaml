@@ -1,0 +1,22 @@
+# Stage 13 measurement-expressivity sweep -- SPEC3_ADDENDUM.md section 19.
+# 4 readout families x 5 seeds = 20 runs. Matched-M rationale in
+# configs/stage13_expressivity.yaml's header comment.
+
+name: stage13_expressivity
+base_config: configs/stage13_expressivity.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: readout family
+
+variants:
+  - label: R0
+    overrides: {model.layers: 8, model.readout_family: R0}
+    value: 0
+  - label: R1
+    overrides: {model.layers: 5, model.readout_family: R1}
+    value: 1
+  - label: R2
+    overrides: {model.layers: 3, model.readout_family: R2}
+    value: 2
+  - label: R3
+    overrides: {model.layers: 6, model.readout_family: R3, model.measurement_layers: 2}
+    value: 3

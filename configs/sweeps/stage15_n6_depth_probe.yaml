@@ -1,0 +1,36 @@
+# Stage 15 n=6 depth probe -- SPEC3_ADDENDUM.md section 21 / PLAYBOOK3.md
+# Stage 15, upgraded with both rotation-mechanism arms (reupload=true AND
+# reupload=false, HR1-HR4). L in {8, 16, 32, 64} (M = 18L), 3 seeds per
+# (depth, reupload-arm) cell = 24 runs, to find the smallest fully
+# interpolating depth per arm before the 5-seed full-witness campaign.
+
+name: stage15_n6_depth_probe
+base_config: configs/stage15_n6_base.yaml
+seeds: [0, 1, 2]
+xlabel: layers (L) x reupload
+
+variants:
+  - label: L8_reupload_true
+    overrides: {model.layers: 8, model.reupload: true}
+    value: 8
+  - label: L8_reupload_false
+    overrides: {model.layers: 8, model.reupload: false}
+    value: 8
+  - label: L16_reupload_true
+    overrides: {model.layers: 16, model.reupload: true}
+    value: 16
+  - label: L16_reupload_false
+    overrides: {model.layers: 16, model.reupload: false}
+    value: 16
+  - label: L32_reupload_true
+    overrides: {model.layers: 32, model.reupload: true}
+    value: 32
+  - label: L32_reupload_false
+    overrides: {model.layers: 32, model.reupload: false}
+    value: 32
+  - label: L64_reupload_true
+    overrides: {model.layers: 64, model.reupload: true}
+    value: 64
+  - label: L64_reupload_false
+    overrides: {model.layers: 64, model.reupload: false}
+    value: 64

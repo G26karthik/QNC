@@ -1,0 +1,66 @@
+{
+  "reupload_true": {
+    "2": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_true_s2_20260725-181157",
+      "total_var_max_rel_change": 0.04283614873003072,
+      "nc1_z_ratio": 0.0036860648289352028,
+      "fiber_fraction_final": 0.995297753506255,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.5333333611488342,
+      "tpt_reached": true,
+      "e0_epoch": 10
+    },
+    "3": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_true_s3_20260725-182159",
+      "total_var_max_rel_change": 0.02805503835776524,
+      "nc1_z_ratio": 0.0009437531442150469,
+      "fiber_fraction_final": 0.9946722728245315,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.6000000238418579,
+      "tpt_reached": true,
+      "e0_epoch": 10
+    },
+    "4": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_true_s4_20260725-183047",
+      "total_var_max_rel_change": 0.01990762117735097,
+      "nc1_z_ratio": 0.0014499211922028123,
+      "fiber_fraction_final": 0.994473062814672,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.46666666865348816,
+      "tpt_reached": true,
+      "e0_epoch": 11
+    }
+  },
+  "reupload_false": {
+    "2": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_false_s2_20260725-183948",
+      "total_var_max_rel_change": 5.898329323431077e-15,
+      "nc1_z_ratio": 0.02705667310794061,
+      "fiber_fraction_final": 0.9922235697206843,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.8999999761581421,
+      "tpt_reached": true,
+      "e0_epoch": 9
+    },
+    "3": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_false_s3_20260725-184626",
+      "total_var_max_rel_change": 8.825362882912286e-15,
+      "nc1_z_ratio": 0.02479529161175128,
+      "fiber_fraction_final": 0.9891329303660138,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.9333333373069763,
+      "tpt_reached": true,
+      "e0_epoch": 8
+    },
+    "4": {
+      "run_id": "stage20_w1_campaign_spc50_remainder_reupload_false_s4_20260725-185308",
+      "total_var_max_rel_change": 6.481731958089079e-15,
+      "nc1_z_ratio": 0.0034065586607420527,
+      "fiber_fraction_final": 0.9912666531706624,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.9666666388511658,
+      "tpt_reached": true,
+      "e0_epoch": 7
+    }
+  }
+}

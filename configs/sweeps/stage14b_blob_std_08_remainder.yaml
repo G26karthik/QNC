@@ -1,0 +1,13 @@
+# Stage 14B HR5 recovery -- stage14b_blob_std.yaml's background sweep was
+# killed before blob_std_0.8 started at all. This remainder covers all 5
+# blob_std_0.8 seeds.
+
+name: stage14b_blob_std_08_remainder
+base_config: configs/stage14_mechanism_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: blob_std
+
+variants:
+  - label: blob_std_0.8
+    overrides: {data.blob_std: 0.8}
+    value: 0.8

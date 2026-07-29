@@ -1,0 +1,15 @@
+# Stage 18 arm B3 depth probe -- L32 cell. Middle depth (L16) dropped per
+# PREDICTIONS.md's preregistered trim rule: the L8 timing probe
+# (3881s/run, 8.6x the n=6 L8 cost) extrapolated the untrimmed {8,16,32}x3
+# + 5-seed-campaign plan past ~12 hours, so the trim rule triggers
+# mechanically -- {8, 32} x 3 seeds only.
+
+name: stage18_n8_depth_probe_l32
+base_config: configs/stage18_n8_base.yaml
+seeds: [0, 1, 2]
+xlabel: layers (L)
+
+variants:
+  - label: L32
+    overrides: {model.layers: 32, model.reupload: true}
+    value: 32

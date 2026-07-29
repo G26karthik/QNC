@@ -1,0 +1,19 @@
+# Stage 10 arm 3 -- entanglement x transition interaction (PLAYBOOK2.md
+# Stage 10): entangling=false at both L_under=2 and L_over=8 on blobs3.
+# The non-entangling ansatz has DLA dim 3n=12 regardless of L; train.py logs
+# m_over_mc against that corrected bound for these arms.
+
+name: stage10_ablation
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2]
+xlabel: ablation arm
+
+variants:
+  - label: noent_L2
+    overrides:
+      model.layers: 2
+      model.entangling: false
+  - label: noent_L8
+    overrides:
+      model.layers: 8
+      model.entangling: false

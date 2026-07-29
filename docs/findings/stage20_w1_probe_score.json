@@ -1,0 +1,46 @@
+{
+  "reupload_true": {
+    "0": {
+      "run_id": "stage20_w1_probe_reupload_true_s0_20260725-172612",
+      "total_var_max_rel_change": 0.022617593390006244,
+      "nc1_z_ratio": 0.000544114397142538,
+      "fiber_fraction_final": 0.9953597761111995,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.6333333253860474,
+      "tpt_reached": true,
+      "e0_epoch": 9
+    },
+    "1": {
+      "run_id": "stage20_w1_probe_reupload_true_s1_20260725-173919",
+      "total_var_max_rel_change": 0.027278166630973263,
+      "nc1_z_ratio": 0.0025936144913035306,
+      "fiber_fraction_final": 0.995330346325821,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.6000000238418579,
+      "tpt_reached": true,
+      "e0_epoch": 10
+    }
+  },
+  "reupload_false": {
+    "0": {
+      "run_id": "stage20_w1_probe_reupload_false_s0_20260725-175128",
+      "total_var_max_rel_change": 4.304815957888238e-15,
+      "nc1_z_ratio": 0.030518496838619673,
+      "fiber_fraction_final": 0.9899449225775151,
+      "n_checkpoints": 161,
+      "test_acc_final": 0.9666666388511658,
+      "tpt_reached": true,
+      "e0_epoch": 48
+    },
+    "1": {
+      "run_id": "stage20_w1_probe_reupload_false_s1_20260725-175915",
+      "total_var_max_rel_change": 6.563079323497632e-15,
+      "nc1_z_ratio": 0.10944682357852221,
+      "fiber_fraction_final": 0.9861663394846024,
+      "n_checkpoints": 175,
+      "test_acc_final": 0.8666666746139526,
+      "tpt_reached": true,
+      "e0_epoch": 134
+    }
+  }
+}

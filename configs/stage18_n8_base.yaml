@@ -1,0 +1,49 @@
+# Stage 18 arm 3 -- n=8 replication (PREDICTIONS.md "Stage 18 preregistration",
+# B3). blobs3 lifted to R^8, same center-distance 3.0 / blob_std 0.8 / 60
+# samples/class recipe as the n=4 headline (configs/stage9_transition.yaml)
+# and the n=6 replication (configs/stage15_n6_base.yaml). n=8 qubits,
+# Hilbert dim 256, su(256) dim = 65535. model.layers and model.reupload are
+# placeholders overridden per-variant by the depth-probe sweep.
+
+experiment: stage18_n8
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+  ambient_dim: 8
+
+model:
+  type: vqc
+  n_qubits: 8
+  layers: 8                    # placeholder; overridden by the depth-probe sweep
+  reupload: true                # placeholder; overridden by the depth-probe sweep
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  weight_decay: 0.0
+  epochs: 600
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 1
+  dense_until: 50
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

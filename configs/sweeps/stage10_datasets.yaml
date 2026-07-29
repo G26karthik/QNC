@@ -1,0 +1,33 @@
+# Stage 10 arm 1 -- dataset generality at L_over=8 (PLAYBOOK2.md Stage 10).
+# L_over = smallest L with TPT fraction ~1 in the Stage 9 table (L8: 5/5).
+# Datasets per SPEC2_ADDENDUM.md section 13: bars_stripes_4x4 under both
+# encodings, linearly_separable_4d, mnist_pca4 (digits 0/1/2, C=3).
+
+name: stage10_datasets
+base_config: configs/stage9_transition.yaml
+seeds: [0, 1, 2]
+xlabel: dataset variant
+
+variants:
+  - label: bs4x4_angle
+    overrides:
+      model.layers: 8
+      data.dataset: bars_stripes_4x4
+      data.noise_std: 0.5
+      model.encoding: angle
+  - label: bs4x4_amplitude
+    overrides:
+      model.layers: 8
+      data.dataset: bars_stripes_4x4
+      data.noise_std: 0.5
+      model.encoding: amplitude
+  - label: linsep4d
+    overrides:
+      model.layers: 8
+      data.dataset: linearly_separable_4d
+      data.margin: 0.1
+  - label: mnist_pca4
+    overrides:
+      model.layers: 8
+      data.dataset: mnist
+      data.classes: [0, 1, 2]

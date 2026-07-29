@@ -1,0 +1,52 @@
+# Stage 14 arm 2 -- long horizon (5000 epochs, 1 seed) -- PREDICTIONS.md
+# "Stage 14 preregistration" section. Same L=8 R0 model/data/optimizer as
+# configs/stage14_mechanism_base.yaml; epochs extended 600 -> 5000 and the
+# dense logging window extended to match, so checkpoints exist every 50
+# epochs across the full run (train.py's should_log gates both metric
+# logging and checkpoint saving on the same dense/sparse schedule) -- needed
+# for the post-e0_epoch trace_w vs log(epoch) Spearman drift test.
+
+experiment: stage14_long_horizon
+seed: 0
+
+data:
+  dataset: blobs3
+  blob_dist: 3.0
+  blob_std: 0.8
+  samples_per_class: 60
+  test_fraction: 0.2
+
+model:
+  type: vqc
+  n_qubits: 4
+  layers: 8
+  readout_family: R0
+  measurement_layers: 2
+  reupload: true
+  entangling: true
+  encoding: angle
+  beta0: 5.0
+  beta_learnable: true
+  beta_max: 50.0
+
+train:
+  optimizer: adam
+  lr: 0.05
+  lr_schedule: constant
+  loss: ce
+  label_smoothing: 0.0
+  weight_decay: 0.0
+  epochs: 5000
+  batch_size: 32
+  tpt_multiple: 5
+  shots: null
+
+logging:
+  log_interval_dense: 50
+  dense_until: 5000
+  log_interval_sparse: 5
+  checkpoint: true
+
+metrics:
+  bipartition: first_half
+  compute_on: [train, test]

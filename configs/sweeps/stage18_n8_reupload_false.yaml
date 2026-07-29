@@ -1,0 +1,18 @@
+# Stage 18 arm B3 -- reupload=false leg (gap found on resume: the B3
+# preregistration in PREDICTIONS.md predicted "reupload=false total_var
+# invariance replicates to machine precision" (matching HR2/HN1/HR6/HN5's
+# exact-invariance convention), but the depth-probe/campaign runs that
+# were actually launched only covered reupload=true. This fills that gap
+# -- 5 fresh seeds, n=8, L8 (the depth already confirmed 3/3 TPT-
+# interpolating for reupload=true; reupload=false at the same depth is
+# the standard pairing throughout this project, e.g. Stage 15's
+# L8_reupload_true/false cells).
+
+name: stage18_n8_reupload_false
+base_config: configs/stage18_n8_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: L8_reupload_false
+    overrides: {model.layers: 8, model.reupload: false}

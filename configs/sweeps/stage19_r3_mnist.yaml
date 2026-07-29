@@ -1,0 +1,18 @@
+# Stage 19 Arm V2(d) -- VQC trainable measurement, R3 (NEW config, not
+# reused from Stage 13B, which only fixed R1/R2 at L=8 and kept R3 at its
+# original matched-M depth L=6 -- reusing that would reintroduce the depth
+# confound Stage 13B was built to diagnose). L=16, matching this dataset's
+# post-deviation depth (see stage19_mnist_base.yaml -- L=8 R0 never
+# reached TPT). reupload=true, matching the Stage 13/13B R0-R3 comparison
+# convention. measurement_layers=2 per Stage 13's R3 definition (24 head
+# params, reported separately from the circuit params, not padded into M).
+# 3 seeds. MNIST {0,1,2}.
+
+name: stage19_r3_mnist
+base_config: configs/stage19_mnist_base.yaml
+seeds: [0, 1, 2]
+xlabel: seed
+
+variants:
+  - label: r3_l16
+    overrides: {model.layers: 16, model.reupload: true, model.readout_family: R3, model.measurement_layers: 2}

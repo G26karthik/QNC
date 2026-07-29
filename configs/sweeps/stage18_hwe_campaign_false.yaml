@@ -1,0 +1,13 @@
+# Stage 18 arm B2 campaign -- reupload=false leg (mandatory per
+# PREDICTIONS.md: the machine-precision invariance replicating under a
+# different ansatz family is this arm's headline). L8, 5 seeds, all fresh
+# (the depth probe only tested reupload=true).
+
+name: stage18_hwe_campaign_false
+base_config: configs/stage18_hwe_base.yaml
+seeds: [0, 1, 2, 3, 4]
+xlabel: seed
+
+variants:
+  - label: L8_reupload_false
+    overrides: {model.layers: 8, model.reupload: false}
